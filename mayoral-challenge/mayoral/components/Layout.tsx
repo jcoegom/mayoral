@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 import Head from "next/head";
 import Footer from "./Footer";
 
-type LayoutType = {
+type LayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: LayoutType) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="layout">
       <Head>
