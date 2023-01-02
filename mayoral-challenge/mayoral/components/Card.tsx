@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 import styles from "../styles/Card.module.css";
 
 type CardProps = {
@@ -6,11 +7,12 @@ type CardProps = {
   altImg?: string;
   description: string;
   Content: React.ReactNode;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const DESCRIPTION_MAX_SIZE = 20;
 
-const Card = ({ srcImg, altImg, description, Content }: CardProps) => {
+const Card = ({ srcImg, altImg, description, Content, onClick }: CardProps) => {
   let descriptionToShow = description ? description : "No hay descripción";
   descriptionToShow =
     descriptionToShow.length > DESCRIPTION_MAX_SIZE
@@ -24,7 +26,9 @@ const Card = ({ srcImg, altImg, description, Content }: CardProps) => {
       </span>
       <div className={styles.cardDescription}>{descriptionToShow}</div>
       {Content}
-      <button className={styles.cardButton}>AÑADIR</button>
+      <button onClick={onClick} className={styles.cardButton}>
+        AÑADIR
+      </button>
     </div>
   );
 };
