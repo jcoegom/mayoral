@@ -1,0 +1,13 @@
+.main {
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.oldPrice {
+  text-decoration: line-through;
+}
+
+.newPrice {
+  color: red;
+}
