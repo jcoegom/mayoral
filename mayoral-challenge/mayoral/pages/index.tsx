@@ -7,14 +7,17 @@ import React from "react";
 import path from "path";
 import fsPromises from "fs/promises";
 import fs from "fs";
+import { isTemplateExpression } from "typescript";
 
 type HomeProps = {
   items: {
-    id: number;
-    src: string;
-    description: string;
-    price: number;
-    discount: number;
+    data: {
+      id: number;
+      src: string;
+      description: string;
+      price: number;
+      discount: number;
+    }[];
   };
 };
 
@@ -31,29 +34,39 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ items }: HomeProps) {
-  const handleClickAdd = () => {
-    alert("CLICK AÑADIR");
+  const handleClickAdd = (id: number) => {
+    alert("CLICK AÑADIR ID " + id);
   };
   const handleClickMoreColors = () => {
     alert("CLICK MÁS COLORES");
   };
   return (
     <>
-      <Card
-        srcImg="/imgs/polo-manga-larga-combinado-para-nino_id_12-04182-075-M-4.jpg"
-        altImg=""
-        description="Esta es la descripcion"
-        onClick={(e) => handleClickAdd()}
-        Content={
-          <div className={styles.cardContent}>
-            <Gap />
-            <Pricing price={10} discount={20} currency={"€"} />
-            <Gap />
-            <AdditionalContent onClick={(e) => handleClickMoreColors()} />
-            <Gap size="15px" />
-          </div>
-        }
-      />
+      {items?.data &&
+        items.data.map((polo) => {
+          return (
+            <Card
+              key={polo.id}
+              srcImg={polo.src}
+              altImg={polo.description}
+              description={polo.description}
+              onClick={(e) => handleClickAdd(polo.id)}
+              Content={
+                <div className={styles.cardContent}>
+                  <Gap />
+                  <Pricing
+                    price={polo.price}
+                    discount={polo.discount}
+                    currency={"€"}
+                  />
+                  <Gap />
+                  <AdditionalContent onClick={(e) => handleClickMoreColors()} />
+                  <Gap size="15px" />
+                </div>
+              }
+            />
+          );
+        })}
     </>
   );
 }
