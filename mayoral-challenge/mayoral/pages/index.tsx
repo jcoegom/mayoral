@@ -4,8 +4,33 @@ import AdditionalContent from "../components/AdditionalCotent";
 import styles from "../styles/Home.module.css";
 import Gap from "../components/Gap";
 import React from "react";
+import path from "path";
+import fsPromises from "fs/promises";
+import fs from "fs";
 
-export default function Home() {
+type HomeProps = {
+  items: {
+    id: number;
+    src: string;
+    description: string;
+    price: number;
+    discount: number;
+  };
+};
+
+export const getStaticProps = async () => {
+  const filePath = path.join(process.cwd(), "/public/data/polos.json");
+  const res = await fs.readFileSync(filePath);
+  const polos = JSON.parse(res.toString());
+
+  return {
+    props: {
+      items: polos,
+    },
+  };
+};
+
+export default function Home({ items }: HomeProps) {
   const handleClickAdd = () => {
     alert("CLICK AÑADIR");
   };
