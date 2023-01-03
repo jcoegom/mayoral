@@ -7,7 +7,7 @@ import React from "react";
 import path from "path";
 import fsPromises from "fs/promises";
 import fs from "fs";
-import { isTemplateExpression } from "typescript";
+import ActionBar from "../components/ActionBar";
 
 type HomeProps = {
   items: {
@@ -42,6 +42,7 @@ export default function Home({ items }: HomeProps) {
   };
   return (
     <>
+      <ActionBar />
       {items?.data &&
         items.data.map((polo) => {
           return (
