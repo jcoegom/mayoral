@@ -42,7 +42,11 @@ export default function Home({ items }: HomeProps) {
   };
   return (
     <>
-      <ActionBar />
+      <ActionBar
+        onClick={(data) => alert(data.type)}
+        searchValue={"hi"}
+        onChange={(text) => alert(text)}
+      />
       {items?.data &&
         items.data.map((polo) => {
           return (
