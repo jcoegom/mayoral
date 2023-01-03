@@ -8,19 +8,35 @@ import path from "path";
 import fsPromises from "fs/promises";
 import fs from "fs";
 import ActionBar from "../components/ActionBar";
+import { isReadable } from "stream";
+
+//TYPES
+type ItemType = {
+  id: number;
+  src: string;
+  description: string;
+  price: number;
+  discount: number;
+};
 
 type HomeProps = {
   items: {
-    data: {
-      id: number;
-      src: string;
-      description: string;
-      price: number;
-      discount: number;
-    }[];
+    data: ItemType[];
   };
 };
 
+//Auxiliar functions
+const filterItemsByText = (items: ItemType[], text: string) => {
+  let filteredItems = items.filter((item) => {
+    if (item.description.includes(text)) {
+      return true;
+    }
+    return false;
+  });
+  return filteredItems;
+};
+
+//getStaticProps
 export const getStaticProps = async () => {
   const filePath = path.join(process.cwd(), "/public/data/polos.json");
   const res = await fs.readFileSync(filePath);
@@ -33,11 +49,15 @@ export const getStaticProps = async () => {
   };
 };
 
+//HOME PAGE
 export default function Home({ items }: HomeProps) {
+  const [itemsToShow, setItemsToShow] = useState(items?.data ? items.data : []);
   const [searchText, setSearchText] = useState<string>("");
 
   const handleOnchangeSearchText = (text: string) => {
     setSearchText(text);
+    let filteredItems = filterItemsByText(items.data, text);
+    setItemsToShow(filteredItems);
   };
 
   const handleClickAdd = (id: number) => {
@@ -53,8 +73,8 @@ export default function Home({ items }: HomeProps) {
         searchValue={searchText}
         onChange={handleOnchangeSearchText}
       />
-      {items?.data &&
-        items.data.map((polo) => {
+      {itemsToShow &&
+        itemsToShow.map((polo) => {
           return (
             <Card
               key={polo.id}
