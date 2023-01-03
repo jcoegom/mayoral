@@ -3,7 +3,7 @@ import Pricing from "../components/Pricing";
 import AdditionalContent from "../components/AdditionalCotent";
 import styles from "../styles/Home.module.css";
 import Gap from "../components/Gap";
-import React from "react";
+import React, { useState } from "react";
 import path from "path";
 import fsPromises from "fs/promises";
 import fs from "fs";
@@ -34,6 +34,12 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ items }: HomeProps) {
+  const [searchText, setSearchText] = useState<string>("");
+
+  const handleOnchangeSearchText = (text: string) => {
+    setSearchText(text);
+  };
+
   const handleClickAdd = (id: number) => {
     alert("CLICK AÑADIR ID " + id);
   };
@@ -44,8 +50,8 @@ export default function Home({ items }: HomeProps) {
     <>
       <ActionBar
         onClick={(data) => alert(data.type)}
-        searchValue={"hi"}
-        onChange={(text) => alert(text)}
+        searchValue={searchText}
+        onChange={handleOnchangeSearchText}
       />
       {items?.data &&
         items.data.map((polo) => {
