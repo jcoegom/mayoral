@@ -1,10 +1,16 @@
-import styles from "../styles/Ordenar.module.css";
+import styles from "../styles/SortPrice.module.css";
 
-const Ordenar = () => {
+const SortPrice = () => {
   return (
     <div className={styles.main}>
       <label htmlFor="sort"></label>
-      <select className={styles.select} name="sort" id="sort">
+      <select
+        value={""}
+        onChange={(e) => console.log(e.target.value)}
+        className={styles.select}
+        name="sort"
+        id="sort"
+      >
         <option className={styles.options} value="">
           Ordenar precio:
         </option>
@@ -19,4 +25,4 @@ const Ordenar = () => {
   );
 };
 
-export default Ordenar;
+export default SortPrice;

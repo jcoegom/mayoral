@@ -1,7 +1,7 @@
 import SearchField from "./SearchField";
 import ViewChanger from "./ViewChanger";
 import styles from "../styles/ActionBar.module.css";
-import Ordenar from "./Ordenar";
+import SortPrice from "./SortPrice";
 
 type ActionBarProps = {
   onClick: ({ type }: { type: string }) => void;
@@ -20,7 +20,7 @@ const ActionBar = ({ onClick, onChange, searchValue }: ActionBarProps) => {
           />
         </div>
         <div style={{ width: "33%", textAlign: "left" }}>
-          <Ordenar />
+          <SortPrice />
         </div>
         <div style={{ width: "33%", textAlign: "right" }}>
           <ViewChanger

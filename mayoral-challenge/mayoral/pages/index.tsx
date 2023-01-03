@@ -5,10 +5,8 @@ import styles from "../styles/Home.module.css";
 import Gap from "../components/Gap";
 import React, { useState } from "react";
 import path from "path";
-import fsPromises from "fs/promises";
 import fs from "fs";
 import ActionBar from "../components/ActionBar";
-import { isReadable } from "stream";
 
 //TYPES
 type ItemType = {
