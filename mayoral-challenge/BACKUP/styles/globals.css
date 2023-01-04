@@ -1,0 +1,12 @@
+.layout {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.footer {
+  background-color: rgb(14, 13, 13);
+  border: "1px solid grey";
+  padding: 1rem;
+  color: grey;
+  border-radius: 0.5em;
+}
