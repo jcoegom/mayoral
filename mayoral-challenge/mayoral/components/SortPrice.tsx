@@ -1,12 +1,17 @@
 import styles from "../styles/SortPrice.module.css";
 
-const SortPrice = () => {
+type SortPriceProps = {
+  onChange: (value: string) => void;
+  value: string;
+};
+
+const SortPrice = ({ onChange, value }: SortPriceProps) => {
   return (
     <div className={styles.main}>
       <label htmlFor="sort"></label>
       <select
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className={styles.select}
         name="sort"
         id="sort"

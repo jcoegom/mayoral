@@ -17,6 +17,8 @@ type ItemType = {
   discount: number;
 };
 
+type SortTypes = "asc" | "desc" | "";
+
 type HomeProps = {
   items: {
     data: ItemType[];
@@ -25,6 +27,7 @@ type HomeProps = {
 
 //Auxiliar functions
 const filterItemsByText = (items: ItemType[], text: string) => {
+  if (!text) return items;
   let filteredItems = items.filter((item) => {
     if (item.description.includes(text)) {
       return true;
@@ -32,6 +35,21 @@ const filterItemsByText = (items: ItemType[], text: string) => {
     return false;
   });
   return filteredItems;
+};
+
+const sortItemsByPrice = (items: ItemType[], type: SortTypes) => {
+  if (!type) return items;
+  let sortedItems = items.sort((a, b) => {
+    let disconuntA = a.discount ? a.discount : 0;
+    let disconuntB = b.discount ? +b.discount : 0;
+    let operation = type === "desc" ? -1 : 1;
+    return (
+      operation *
+      (+a.price * (1 - disconuntA / 100) - b.price * (1 - disconuntB / 100))
+    );
+  });
+  console.log("sortedItems", sortedItems);
+  return sortedItems;
 };
 
 //getStaticProps
@@ -51,11 +69,22 @@ export const getStaticProps = async () => {
 export default function Home({ items }: HomeProps) {
   const [itemsToShow, setItemsToShow] = useState(items?.data ? items.data : []);
   const [searchText, setSearchText] = useState<string>("");
+  const [valueSortPrice, setValueSortPrice] = useState<string>("");
 
-  const handleOnchangeSearchText = (text: string) => {
-    setSearchText(text);
-    let filteredItems = filterItemsByText(items.data, text);
-    setItemsToShow(filteredItems);
+  const handleOnchangeSearchText = (type: "search" | "sort", text: string) => {
+    let searchValue = searchText;
+    let sortValue = valueSortPrice;
+    if (type === "search") {
+      setSearchText(text);
+      searchValue = text;
+    } else if (type === "sort") {
+      setValueSortPrice(text);
+      sortValue = text;
+    }
+
+    let filteredItems = filterItemsByText(items.data, searchValue);
+    let sortedItems = sortItemsByPrice(filteredItems, sortValue as SortTypes);
+    setItemsToShow(sortedItems);
   };
 
   const handleClickAdd = (id: number) => {
@@ -69,7 +98,9 @@ export default function Home({ items }: HomeProps) {
       <ActionBar
         onClick={(data) => alert(data.type)}
         searchValue={searchText}
-        onChange={handleOnchangeSearchText}
+        onChange={(text) => handleOnchangeSearchText("search", text)}
+        onChangeSortPrice={(value) => handleOnchangeSearchText("sort", value)}
+        valueSortPrice={valueSortPrice}
       />
       {itemsToShow &&
         itemsToShow.map((polo) => {

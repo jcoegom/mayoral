@@ -6,10 +6,18 @@ import SortPrice from "./SortPrice";
 type ActionBarProps = {
   onClick: ({ type }: { type: string }) => void;
   onChange: (text: string) => void;
+  onChangeSortPrice: (value: string) => void;
+  valueSortPrice: string;
   searchValue: string;
 };
 
-const ActionBar = ({ onClick, onChange, searchValue }: ActionBarProps) => {
+const ActionBar = ({
+  onClick,
+  onChange,
+  onChangeSortPrice,
+  valueSortPrice,
+  searchValue,
+}: ActionBarProps) => {
   return (
     <>
       <div className={styles.main}>
@@ -20,7 +28,7 @@ const ActionBar = ({ onClick, onChange, searchValue }: ActionBarProps) => {
           />
         </div>
         <div style={{ width: "33%", textAlign: "left" }}>
-          <SortPrice />
+          <SortPrice onChange={onChangeSortPrice} value={valueSortPrice} />
         </div>
         <div style={{ width: "33%", textAlign: "right" }}>
           <ViewChanger
