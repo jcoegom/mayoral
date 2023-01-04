@@ -1,4 +1,5 @@
 import styles from "../styles/Pricing.module.css";
+import Gap from "./Gap";
 type PricingProps = {
   price: number;
   discount?: number;
@@ -17,7 +18,10 @@ const Pricing = ({ price, discount, currency = "€" }: PricingProps) => {
           >{`${finalPrice} ${currency} (-${discount}%)`}</div>
         </>
       ) : (
-        <div>{`${price} ${currency}`}</div>
+        <>
+          <Gap size={"10px"} />
+          <div>{`${price} ${currency}`}</div>
+        </>
       )}
     </div>
   );

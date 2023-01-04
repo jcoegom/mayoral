@@ -122,7 +122,7 @@ export default function Home({ items }: HomeProps) {
                 description={polo.description}
                 onClick={(e) => handleClickAdd(polo.id)}
                 Content={
-                  <div className={styles.cardContent}>
+                  <div>
                     <Gap />
                     <Pricing
                       price={polo.price}
