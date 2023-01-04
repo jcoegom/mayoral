@@ -9,7 +9,7 @@ import fs from "fs";
 import ActionBar from "../components/ActionBar";
 
 //TYPES
-type ItemType = {
+export type ItemType = {
   id: number;
   src: string;
   description: string;
@@ -17,16 +17,16 @@ type ItemType = {
   discount: number;
 };
 
-type SortTypes = "asc" | "desc" | "";
+export type SortTypes = "asc" | "desc" | "";
 
-type HomeProps = {
+export type HomeProps = {
   items: {
     data: ItemType[];
   };
 };
 
 //Auxiliar functions
-const filterItemsByText = (items: ItemType[], text: string) => {
+export const filterItemsByText = (items: ItemType[], text: string) => {
   if (!text) return items;
   let filteredItems = items.filter((item) => {
     if (item.description.includes(text)) {
@@ -37,7 +37,7 @@ const filterItemsByText = (items: ItemType[], text: string) => {
   return filteredItems;
 };
 
-const sortItemsByPrice = (items: ItemType[], type: SortTypes) => {
+export const sortItemsByPrice = (items: ItemType[], type: SortTypes) => {
   if (!type) return items;
   let sortedItems = items.sort((a, b) => {
     let disconuntA = a.discount ? a.discount : 0;

@@ -12,7 +12,10 @@ const Pricing = ({ price, discount, currency = "€" }: PricingProps) => {
     <div className={styles.main}>
       {discount ? (
         <>
-          <div className={styles.oldPrice}>{`${price} ${currency}`}</div>
+          <div
+            data-testid="pricing-discount"
+            className={styles.oldPrice}
+          >{`${price} ${currency}`}</div>
           <div
             className={styles.newPrice}
           >{`${finalPrice} ${currency} (-${discount}%)`}</div>
@@ -20,7 +23,7 @@ const Pricing = ({ price, discount, currency = "€" }: PricingProps) => {
       ) : (
         <>
           <Gap size={"10px"} />
-          <div>{`${price} ${currency}`}</div>
+          <div data-testid="pricing-nodiscount">{`${price} ${currency}`}</div>
         </>
       )}
     </div>
