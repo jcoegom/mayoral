@@ -20,10 +20,10 @@ const SortPrice = ({ onChange, value }: SortPriceProps) => {
           Ordenar precio:
         </option>
         <option className={styles.options} value="asc">
-          Precio Ascendente
+          Precio Asc.
         </option>
         <option className={styles.options} value="desc">
-          Precio Descendente
+          Precio Desc.
         </option>
       </select>
     </div>
