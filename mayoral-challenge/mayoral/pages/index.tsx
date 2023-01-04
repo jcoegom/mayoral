@@ -99,7 +99,7 @@ export default function Home({ items }: HomeProps) {
     alert("CLICK MÁS COLORES");
   };
   return (
-    <>
+    <div className={styles.main}>
       <ActionBar
         onClick={(data) => changeView(data.type)}
         searchValue={searchText}
@@ -140,6 +140,6 @@ export default function Home({ items }: HomeProps) {
             );
           })}
       </div>
-    </>
+    </div>
   );
 }
