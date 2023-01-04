@@ -15,3 +15,19 @@
   column-gap: 0px;
   row-gap: 0px;
 }
+
+@media (max-width: 600px) {
+  .cardListPlus {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0px;
+    row-gap: 0px;
+  }
+
+  .cardListMinus {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0px;
+    row-gap: 0px;
+  }
+}
