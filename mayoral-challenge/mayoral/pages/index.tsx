@@ -70,6 +70,11 @@ export default function Home({ items }: HomeProps) {
   const [itemsToShow, setItemsToShow] = useState(items?.data ? items.data : []);
   const [searchText, setSearchText] = useState<string>("");
   const [valueSortPrice, setValueSortPrice] = useState<string>("");
+  const [elemntsPerCol, setElementsPerCol] = useState<string>("plus");
+
+  const changeView = (type: string) => {
+    setElementsPerCol(type);
+  };
 
   const handleOnchangeSearchText = (type: "search" | "sort", text: string) => {
     let searchValue = searchText;
@@ -96,37 +101,45 @@ export default function Home({ items }: HomeProps) {
   return (
     <>
       <ActionBar
-        onClick={(data) => alert(data.type)}
+        onClick={(data) => changeView(data.type)}
         searchValue={searchText}
         onChange={(text) => handleOnchangeSearchText("search", text)}
         onChangeSortPrice={(value) => handleOnchangeSearchText("sort", value)}
         valueSortPrice={valueSortPrice}
       />
-      {itemsToShow &&
-        itemsToShow.map((polo) => {
-          return (
-            <Card
-              key={polo.id}
-              srcImg={polo.src}
-              altImg={polo.description}
-              description={polo.description}
-              onClick={(e) => handleClickAdd(polo.id)}
-              Content={
-                <div className={styles.cardContent}>
-                  <Gap />
-                  <Pricing
-                    price={polo.price}
-                    discount={polo.discount}
-                    currency={"€"}
-                  />
-                  <Gap />
-                  <AdditionalContent onClick={(e) => handleClickMoreColors()} />
-                  <Gap size="15px" />
-                </div>
-              }
-            />
-          );
-        })}
+      <div
+        className={
+          elemntsPerCol === "plus" ? styles.cardListPlus : styles.cardListMinus
+        }
+      >
+        {itemsToShow &&
+          itemsToShow.map((polo) => {
+            return (
+              <Card
+                key={polo.id}
+                srcImg={polo.src}
+                altImg={polo.description}
+                description={polo.description}
+                onClick={(e) => handleClickAdd(polo.id)}
+                Content={
+                  <div className={styles.cardContent}>
+                    <Gap />
+                    <Pricing
+                      price={polo.price}
+                      discount={polo.discount}
+                      currency={"€"}
+                    />
+                    <Gap />
+                    <AdditionalContent
+                      onClick={(e) => handleClickMoreColors()}
+                    />
+                    <Gap size="15px" />
+                  </div>
+                }
+              />
+            );
+          })}
+      </div>
     </>
   );
 }
