@@ -4,8 +4,8 @@
 }
 
 .footer {
-  background-color: rgb(14, 13, 13);
-  border: "1px solid grey";
+  text-align: center;
+  margin-top: 40px;
   padding: 1rem;
   color: grey;
   border-radius: 0.5em;

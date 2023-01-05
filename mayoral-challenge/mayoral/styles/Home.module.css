@@ -23,6 +23,7 @@
     grid-template-columns: 200px 200px 200px;
     column-gap: 20px;
     row-gap: 20px;
+    zoom: 60%;
   }
 
   .cardListMinus {
@@ -30,5 +31,6 @@
     grid-template-columns: 200px 200px;
     column-gap: 20px;
     row-gap: 20px;
+    zoom: 80%;
   }
 }
