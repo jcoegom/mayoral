@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  grid-template-columns: 200px 200px 200px;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.viewerChanges {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+    zoom: 80%;
+  }
+  .viewerChanges {
+    text-align: center;
+  }
+}

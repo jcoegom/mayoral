@@ -1,0 +1,12 @@
+.searchInput {
+  background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 30px;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  margin-bottom: 12px;
+  color: rgb(94, 91, 91);
+}

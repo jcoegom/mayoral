@@ -1,0 +1,12 @@
+.layout {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 1rem;
+  color: grey;
+  border-radius: 0.5em;
+}

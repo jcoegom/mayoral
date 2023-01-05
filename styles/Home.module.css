@@ -1,0 +1,36 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cardListPlus {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.cardListMinus {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .cardListPlus {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    column-gap: 20px;
+    row-gap: 20px;
+    zoom: 60%;
+  }
+
+  .cardListMinus {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    column-gap: 20px;
+    row-gap: 20px;
+    zoom: 80%;
+  }
+}
