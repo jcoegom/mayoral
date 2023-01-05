@@ -7,6 +7,7 @@ type PricingProps = {
 };
 
 const Pricing = ({ price, discount, currency = "€" }: PricingProps) => {
+  //Componente de vista. Muestra el precio o bien el precio más el precio tras descuento en el caso de ser necesario.
   const finalPrice = discount ? +price * (1 - discount / 100) : price;
   return (
     <div className={styles.main}>

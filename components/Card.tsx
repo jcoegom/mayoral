@@ -14,6 +14,7 @@ const DESCRIPTION_MAX_SIZE = 20;
 
 const Card = ({ srcImg, altImg, description, Content, onClick }: CardProps) => {
   let descriptionToShow = description ? description : "No hay descripción";
+  //si el tamaño de la descripción es superior a DESCRIPTION_MAX_SIZE la recorta y añade '...'
   descriptionToShow =
     descriptionToShow.length > DESCRIPTION_MAX_SIZE
       ? descriptionToShow.substring(0, DESCRIPTION_MAX_SIZE - 1) + "..."

@@ -27,6 +27,7 @@ export type HomeProps = {
 
 //Auxiliar functions
 export const filterItemsByText = (items: ItemType[], text: string) => {
+  //filtra por texto.
   if (!text) return items;
   let filteredItems = items.filter((item) => {
     if (item.description.includes(text)) {
@@ -38,6 +39,7 @@ export const filterItemsByText = (items: ItemType[], text: string) => {
 };
 
 export const sortItemsByPrice = (items: ItemType[], type: SortTypes) => {
+  //Ordena por precio una vez aplicado el descuento.
   if (!type) return items;
   let sortedItems = items.sort((a, b) => {
     let disconuntA = a.discount ? a.discount : 0;
@@ -52,7 +54,7 @@ export const sortItemsByPrice = (items: ItemType[], type: SortTypes) => {
   return sortedItems;
 };
 
-//getStaticProps
+//getStaticProps: Obtiene los datos de los artículos.
 export const getStaticProps = async () => {
   const filePath = path.join(process.cwd(), "/public/data/polos.json");
   const res = await fs.readFileSync(filePath);
@@ -68,15 +70,16 @@ export const getStaticProps = async () => {
 //HOME PAGE
 export default function Home({ items }: HomeProps) {
   const [itemsToShow, setItemsToShow] = useState(items?.data ? items.data : []);
-  const [searchText, setSearchText] = useState<string>("");
-  const [valueSortPrice, setValueSortPrice] = useState<string>("");
-  const [elemntsPerCol, setElementsPerCol] = useState<string>("plus");
+  const [searchText, setSearchText] = useState<string>(""); //Almacena el texto de búsqueda.
+  const [valueSortPrice, setValueSortPrice] = useState<string>(""); //Indica que tipo de filtrado por precio queremos.
+  const [elemntsPerCol, setElementsPerCol] = useState<string>("plus"); //Indica el tipo de vista que deseamos.
 
   const changeView = (type: string) => {
     setElementsPerCol(type);
   };
 
   const handleOnchangeSearchText = (type: "search" | "sort", text: string) => {
+    //implementa la búsqueda por texto y la ordenación por precio.
     let searchValue = searchText;
     let sortValue = valueSortPrice;
     if (type === "search") {
