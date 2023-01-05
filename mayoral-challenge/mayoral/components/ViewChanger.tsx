@@ -7,7 +7,7 @@ type ViewChangerProps = {
 
 const ViewChanger = ({ onClick }: ViewChangerProps) => {
   return (
-    <>
+    <div>
       <img
         onClick={(_e) => onClick({ type: "minus" })}
         className={styles.imgViewChanger}
@@ -21,7 +21,7 @@ const ViewChanger = ({ onClick }: ViewChangerProps) => {
         src="/plus.svg"
         height={20}
       />
-    </>
+    </div>
   );
 };
 

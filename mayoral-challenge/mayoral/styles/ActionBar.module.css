@@ -1,11 +1,20 @@
 .main {
   display: flex;
-  flex-direction: row;
+  grid-template-columns: 200px 200px 200px;
+  column-gap: 20px;
+  row-gap: 40px;
+}
+
+.viewerChanges {
+  text-align: right;
 }
 
 @media (max-width: 600px) {
   .main {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .viewerChanges {
+    text-align: center;
   }
 }

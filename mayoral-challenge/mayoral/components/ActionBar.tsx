@@ -21,16 +21,13 @@ const ActionBar = ({
   return (
     <>
       <div className={styles.main}>
-        <div style={{ width: "33%" }}>
-          <SearchField
-            onChange={(text: string) => onChange(text)}
-            value={searchValue}
-          />
-        </div>
-        <div style={{ width: "33%", textAlign: "left" }}>
-          <SortPrice onChange={onChangeSortPrice} value={valueSortPrice} />
-        </div>
-        <div style={{ width: "33%", textAlign: "right" }}>
+        <SearchField
+          onChange={(text: string) => onChange(text)}
+          value={searchValue}
+        />
+
+        <SortPrice onChange={onChangeSortPrice} value={valueSortPrice} />
+        <div className={styles.viewerChanges}>
           <ViewChanger
             onClick={({ type }: { type: string }) => onClick({ type })}
           />
